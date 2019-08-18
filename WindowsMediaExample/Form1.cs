@@ -16,11 +16,22 @@ namespace WindowsMediaExample
         private bool draggable;
         private int mouseX;
         private int mouseY;
+        // Controls
+        private bool isPlaying = false;
+        private string[] mp3Files;
+        private string[] routeFiles;
+        private string file;
 
         public Form1()
         {
             InitializeComponent();
         }
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            tbVolume.Value = wmPlayer.settings.volume;
+            volume.Value = tbVolume.Value.ToString();
+        }
+
         private void BtnClose_Click(object sender, EventArgs e)
         {
             Application.Exit();
@@ -60,18 +71,106 @@ namespace WindowsMediaExample
             draggable = false;
         }
 
+        // Windows media player
+        private void BtnStop_Click(object sender, EventArgs e)
+        {
+            wmPlayer.Ctlcontrols.stop();
+        }
         private void BtnAgregar_Click(object sender, EventArgs e)
         {
             btnQuitar.Visible = true;
+            musicFiles.Multiselect = true;
+            musicFiles.Filter = "Music (.mp3)|*.mp3";
+            if (musicFiles.ShowDialog() == DialogResult.OK)
+            {
+                mp3Files = musicFiles.SafeFileNames;
+                routeFiles = musicFiles.FileNames;
+                foreach(var mp3File in mp3Files)
+                {
+                    songList.Items.Add(mp3File);
+                }
+            }
+            quantitySongs.Value = songList.Items.Count.ToString();
         }
-
-        private void ListBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void BtnPlay_Click(object sender, EventArgs e)
         {
+            wmPlayer.settings.autoStart = false;
+            if (wmPlayer.URL == "")
+            {
+                wmPlayer.URL = routeFiles[0];
+                songList.SelectedIndex = 0;
+            }
+            if (isPlaying == false)
+            {
+                wmPlayer.Ctlcontrols.play();
+            }
+            else if(isPlaying == true)
+            {
+                wmPlayer.Ctlcontrols.pause();
+            }
+        }
+        private void SongList_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            file = routeFiles[songList.SelectedIndex];
+            btnNext.Enabled = true;
+            btnPrevious.Enabled = true;
+            if (songList.SelectedIndex <= 0)
+                btnPrevious.Enabled = false;
+            if (songList.SelectedIndex == songList.Items.Count-1)
+                btnNext.Enabled = false;
+        }
+        private void BtnPrevious_Click(object sender, EventArgs e)
+        {
+            file = routeFiles[--songList.SelectedIndex];
+            wmPlayer.URL = file;
+            wmPlayer.Ctlcontrols.play();
+        }
+        private void BtnNext_Click(object sender, EventArgs e)
+        {
+            file = routeFiles[++songList.SelectedIndex];
+            wmPlayer.URL = file;
+            wmPlayer.Ctlcontrols.play();
+//            Image img = wmPlayer.currentMedia.imageSourceHeight;
+            //            label2.Text = wmPlayer.currentMedia.durationString;
+//            wmPlayer.Ctlcontrols.currentItem.sourceURL
+//            Image im = wmPlayer.Ctlcontrols.currentItem.
+
+        }
+        private void SongList_DoubleClick(object sender, EventArgs e)
+        {
+            wmPlayer.URL = file;
+            wmPlayer.Ctlcontrols.play();
+        }
+        private void WmPlayer_PlayStateChange(object sender, AxWMPLib._WMPOCXEvents_PlayStateChangeEvent e)
+        {
+            switch (e.newState)
+            {
+                case 1:    // Stopped
+                    songName.Text = "";
+                    isPlaying = false;
+                    break;
+                case 2:    // Paused
+                    btnPlay.Load("images/013-play.png");
+                    isPlaying = false;
+                    break;
+
+                case 3:    // Playing
+                    songName.Text = wmPlayer.currentMedia.name;
+                    txtDuration.Text = wmPlayer.currentMedia.durationString;
+                    btnPlay.Load("images/021-pause.png");
+                    isPlaying = true;
+                    break;
+            }
+        }
+        private void TbVolume_Scroll(object sender, EventArgs e)
+        {
+            wmPlayer.settings.volume = tbVolume.Value;
+            volume.Value = tbVolume.Value.ToString();
+        }
+
+        private void Label2_Click(object sender, EventArgs e)
+        {
+            
 
         }
     }
