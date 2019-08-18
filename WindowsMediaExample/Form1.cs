@@ -83,6 +83,7 @@ namespace WindowsMediaExample
             musicFiles.Filter = "Music (.mp3)|*.mp3";
             if (musicFiles.ShowDialog() == DialogResult.OK)
             {
+                groupBox2.Enabled = true;
                 mp3Files = musicFiles.SafeFileNames;
                 routeFiles = musicFiles.FileNames;
                 foreach(var mp3File in mp3Files)
@@ -111,7 +112,10 @@ namespace WindowsMediaExample
         }
         private void SongList_SelectedIndexChanged(object sender, EventArgs e)
         {
-            file = routeFiles[songList.SelectedIndex];
+            quantitySongs.Value = songList.Items.Count.ToString();
+            try { file = routeFiles[songList.SelectedIndex]; }
+            catch (Exception ex) { }
+          
             btnNext.Enabled = true;
             btnPrevious.Enabled = true;
             if (songList.SelectedIndex <= 0)
@@ -130,11 +134,6 @@ namespace WindowsMediaExample
             file = routeFiles[++songList.SelectedIndex];
             wmPlayer.URL = file;
             wmPlayer.Ctlcontrols.play();
-//            Image img = wmPlayer.currentMedia.imageSourceHeight;
-            //            label2.Text = wmPlayer.currentMedia.durationString;
-//            wmPlayer.Ctlcontrols.currentItem.sourceURL
-//            Image im = wmPlayer.Ctlcontrols.currentItem.
-
         }
         private void SongList_DoubleClick(object sender, EventArgs e)
         {
@@ -174,27 +173,6 @@ namespace WindowsMediaExample
             volume.Value = tbVolume.Value.ToString();
         }
 
-        private void Label2_Click(object sender, EventArgs e)
-        {
-
-
-            /*
-            //            int d = wmPlayer.currentMedia.duration;
-                        label2.Text = wmPlayer.currentMedia.duration.ToString();
-            //            progressBar1.Maximum = wmPlayer.currentMedia.duration;
-            //            progressBar1.Value = int.Parse(wmPlayer.Ctlcontrols.currentPositionString);
-                        txtActual.Text = wmPlayer.Ctlcontrols.currentPositionString;
-
-                        int min = (int)(wmPlayer.currentMedia.duration / 60000);
-                        double seg1 = min - (wmPlayer.currentMedia.duration / 60000);
-                        int seg2 = (int)(seg1 * 60);
-                        int asds = ((min * 60) + seg2);
-                        progressBar1.Maximum = (min * 60) + seg2;
-                        txtLeft.Text = asds.ToString();
-             */
-
-        }
-
         private void Time_Tick(object sender, EventArgs e)
         {
             progressBar1.Value = (int)wmPlayer.Ctlcontrols.currentPosition;
@@ -205,6 +183,31 @@ namespace WindowsMediaExample
         private void TrackBar1_Scroll(object sender, EventArgs e)
         {
             wmPlayer.Ctlcontrols.currentPosition = trackBar1.Value;
+        }
+
+        private void BtnQuitar_Click(object sender, EventArgs e)
+        {
+
+            if (int.Parse(quantitySongs.Value) > 0)
+            {
+                groupBox2.Enabled = false;
+                btnQuitar.Visible = false;
+            }
+            else
+            {
+                songList.Items.RemoveAt(songList.SelectedIndex);
+                groupBox2.Enabled = true;
+            }
+        }
+
+        private void TrackBar1_MouseDown(object sender, MouseEventArgs e)
+        {
+            wmPlayer.Ctlcontrols.pause();
+        }
+
+        private void TrackBar1_MouseUp(object sender, MouseEventArgs e)
+        {
+            wmPlayer.Ctlcontrols.play();
         }
     }
 }

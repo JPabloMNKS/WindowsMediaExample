@@ -262,6 +262,7 @@
             this.btnQuitar.Text = "QUITAR";
             this.btnQuitar.UseVisualStyleBackColor = false;
             this.btnQuitar.Visible = false;
+            this.btnQuitar.Click += new System.EventHandler(this.BtnQuitar_Click);
             // 
             // panelBottom
             // 
@@ -291,9 +292,10 @@
             this.groupBox2.Controls.Add(this.btnNext);
             this.groupBox2.Controls.Add(this.btnPrevious);
             this.groupBox2.Controls.Add(this.btnStop);
+            this.groupBox2.Enabled = false;
             this.groupBox2.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox2.ForeColor = System.Drawing.Color.White;
-            this.groupBox2.Location = new System.Drawing.Point(3, 3);
+            this.groupBox2.Location = new System.Drawing.Point(12, 3);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(276, 80);
             this.groupBox2.TabIndex = 9;
@@ -432,7 +434,6 @@
             // 
             // time
             // 
-            this.time.Interval = 1000;
             this.time.Tick += new System.EventHandler(this.Time_Tick);
             // 
             // trackBar1
@@ -442,6 +443,8 @@
             this.trackBar1.Size = new System.Drawing.Size(606, 45);
             this.trackBar1.TabIndex = 9;
             this.trackBar1.Scroll += new System.EventHandler(this.TrackBar1_Scroll);
+            this.trackBar1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.TrackBar1_MouseDown);
+            this.trackBar1.MouseUp += new System.Windows.Forms.MouseEventHandler(this.TrackBar1_MouseUp);
             // 
             // Form1
             // 
