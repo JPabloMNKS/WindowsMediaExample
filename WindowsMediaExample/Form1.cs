@@ -148,10 +148,12 @@ namespace WindowsMediaExample
                 case 1:    // Stopped
                     songName.Text = "";
                     isPlaying = false;
+                    time.Enabled = false;
                     break;
                 case 2:    // Paused
                     btnPlay.Load("images/013-play.png");
                     isPlaying = false;
+                    time.Enabled = false;
                     break;
 
                 case 3:    // Playing
@@ -159,6 +161,10 @@ namespace WindowsMediaExample
                     txtDuration.Text = wmPlayer.currentMedia.durationString;
                     btnPlay.Load("images/021-pause.png");
                     isPlaying = true;
+                    time.Enabled = true;
+                    int total = (int)wmPlayer.currentMedia.duration;
+                    progressBar1.Maximum = total;
+                    trackBar1.Maximum = total;
                     break;
             }
         }
@@ -170,8 +176,35 @@ namespace WindowsMediaExample
 
         private void Label2_Click(object sender, EventArgs e)
         {
-            
 
+
+            /*
+            //            int d = wmPlayer.currentMedia.duration;
+                        label2.Text = wmPlayer.currentMedia.duration.ToString();
+            //            progressBar1.Maximum = wmPlayer.currentMedia.duration;
+            //            progressBar1.Value = int.Parse(wmPlayer.Ctlcontrols.currentPositionString);
+                        txtActual.Text = wmPlayer.Ctlcontrols.currentPositionString;
+
+                        int min = (int)(wmPlayer.currentMedia.duration / 60000);
+                        double seg1 = min - (wmPlayer.currentMedia.duration / 60000);
+                        int seg2 = (int)(seg1 * 60);
+                        int asds = ((min * 60) + seg2);
+                        progressBar1.Maximum = (min * 60) + seg2;
+                        txtLeft.Text = asds.ToString();
+             */
+
+        }
+
+        private void Time_Tick(object sender, EventArgs e)
+        {
+            progressBar1.Value = (int)wmPlayer.Ctlcontrols.currentPosition;
+            trackBar1.Value = (int)wmPlayer.Ctlcontrols.currentPosition;
+            txtActual.Text = wmPlayer.Ctlcontrols.currentPositionString;
+        }
+
+        private void TrackBar1_Scroll(object sender, EventArgs e)
+        {
+            wmPlayer.Ctlcontrols.currentPosition = trackBar1.Value;
         }
     }
 }

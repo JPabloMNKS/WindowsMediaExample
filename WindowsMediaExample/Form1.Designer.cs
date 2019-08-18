@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.wmPlayer = new AxWMPLib.AxWindowsMediaPlayer();
             this.panelTop = new System.Windows.Forms.Panel();
@@ -43,29 +44,32 @@
             this.btnAgregar = new System.Windows.Forms.Button();
             this.btnQuitar = new System.Windows.Forms.Button();
             this.panelBottom = new System.Windows.Forms.Panel();
+            this.songName = new System.Windows.Forms.Label();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.btnPlay = new System.Windows.Forms.PictureBox();
             this.btnNext = new System.Windows.Forms.Button();
+            this.btnPrevious = new System.Windows.Forms.Button();
+            this.btnStop = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.tbVolume = new System.Windows.Forms.TrackBar();
             this.volume = new DmitryBrant.CustomControls.SevenSegmentArray();
-            this.btnPrevious = new System.Windows.Forms.Button();
-            this.btnStop = new System.Windows.Forms.Button();
             this.musicFiles = new System.Windows.Forms.OpenFileDialog();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.songName = new System.Windows.Forms.Label();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
-            this.label2 = new System.Windows.Forms.Label();
             this.txtDuration = new System.Windows.Forms.Label();
+            this.txtActual = new System.Windows.Forms.Label();
+            this.time = new System.Windows.Forms.Timer(this.components);
+            this.trackBar1 = new System.Windows.Forms.TrackBar();
             ((System.ComponentModel.ISupportInitialize)(this.wmPlayer)).BeginInit();
             this.panelTop.SuspendLayout();
             this.panelRight.SuspendLayout();
             this.panelRightBottom.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panelBottom.SuspendLayout();
+            this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnPlay)).BeginInit();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tbVolume)).BeginInit();
-            this.groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
             this.SuspendLayout();
             // 
             // wmPlayer
@@ -271,6 +275,31 @@
             this.panelBottom.Size = new System.Drawing.Size(853, 86);
             this.panelBottom.TabIndex = 3;
             // 
+            // songName
+            // 
+            this.songName.AutoSize = true;
+            this.songName.Font = new System.Drawing.Font("MS UI Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.songName.ForeColor = System.Drawing.Color.White;
+            this.songName.Location = new System.Drawing.Point(308, 32);
+            this.songName.Name = "songName";
+            this.songName.Size = new System.Drawing.Size(0, 21);
+            this.songName.TabIndex = 10;
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.btnPlay);
+            this.groupBox2.Controls.Add(this.btnNext);
+            this.groupBox2.Controls.Add(this.btnPrevious);
+            this.groupBox2.Controls.Add(this.btnStop);
+            this.groupBox2.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox2.ForeColor = System.Drawing.Color.White;
+            this.groupBox2.Location = new System.Drawing.Point(3, 3);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(276, 80);
+            this.groupBox2.TabIndex = 9;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Control";
+            // 
             // btnPlay
             // 
             this.btnPlay.Image = ((System.Drawing.Image)(resources.GetObject("btnPlay.Image")));
@@ -294,6 +323,34 @@
             this.btnNext.TabIndex = 2;
             this.btnNext.UseVisualStyleBackColor = true;
             this.btnNext.Click += new System.EventHandler(this.BtnNext_Click);
+            // 
+            // btnPrevious
+            // 
+            this.btnPrevious.FlatAppearance.BorderSize = 0;
+            this.btnPrevious.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(80)))), ((int)(((byte)(80)))));
+            this.btnPrevious.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(70)))), ((int)(((byte)(70)))));
+            this.btnPrevious.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPrevious.Image = ((System.Drawing.Image)(resources.GetObject("btnPrevious.Image")));
+            this.btnPrevious.Location = new System.Drawing.Point(56, 22);
+            this.btnPrevious.Name = "btnPrevious";
+            this.btnPrevious.Size = new System.Drawing.Size(56, 39);
+            this.btnPrevious.TabIndex = 3;
+            this.btnPrevious.UseVisualStyleBackColor = true;
+            this.btnPrevious.Click += new System.EventHandler(this.BtnPrevious_Click);
+            // 
+            // btnStop
+            // 
+            this.btnStop.FlatAppearance.BorderSize = 0;
+            this.btnStop.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(80)))), ((int)(((byte)(80)))));
+            this.btnStop.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(70)))), ((int)(((byte)(70)))));
+            this.btnStop.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnStop.Image = ((System.Drawing.Image)(resources.GetObject("btnStop.Image")));
+            this.btnStop.Location = new System.Drawing.Point(6, 22);
+            this.btnStop.Name = "btnStop";
+            this.btnStop.Size = new System.Drawing.Size(44, 39);
+            this.btnStop.TabIndex = 4;
+            this.btnStop.UseVisualStyleBackColor = true;
+            this.btnStop.Click += new System.EventHandler(this.BtnStop_Click);
             // 
             // groupBox1
             // 
@@ -337,90 +394,54 @@
             this.volume.TabStop = false;
             this.volume.Value = "100";
             // 
-            // btnPrevious
-            // 
-            this.btnPrevious.FlatAppearance.BorderSize = 0;
-            this.btnPrevious.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(80)))), ((int)(((byte)(80)))));
-            this.btnPrevious.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(70)))), ((int)(((byte)(70)))));
-            this.btnPrevious.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnPrevious.Image = ((System.Drawing.Image)(resources.GetObject("btnPrevious.Image")));
-            this.btnPrevious.Location = new System.Drawing.Point(56, 22);
-            this.btnPrevious.Name = "btnPrevious";
-            this.btnPrevious.Size = new System.Drawing.Size(56, 39);
-            this.btnPrevious.TabIndex = 3;
-            this.btnPrevious.UseVisualStyleBackColor = true;
-            this.btnPrevious.Click += new System.EventHandler(this.BtnPrevious_Click);
-            // 
-            // btnStop
-            // 
-            this.btnStop.FlatAppearance.BorderSize = 0;
-            this.btnStop.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(80)))), ((int)(((byte)(80)))));
-            this.btnStop.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(70)))), ((int)(((byte)(70)))));
-            this.btnStop.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnStop.Image = ((System.Drawing.Image)(resources.GetObject("btnStop.Image")));
-            this.btnStop.Location = new System.Drawing.Point(6, 22);
-            this.btnStop.Name = "btnStop";
-            this.btnStop.Size = new System.Drawing.Size(44, 39);
-            this.btnStop.TabIndex = 4;
-            this.btnStop.UseVisualStyleBackColor = true;
-            this.btnStop.Click += new System.EventHandler(this.BtnStop_Click);
-            // 
             // musicFiles
             // 
             this.musicFiles.FileName = "musicFiles";
             // 
-            // groupBox2
-            // 
-            this.groupBox2.Controls.Add(this.btnPlay);
-            this.groupBox2.Controls.Add(this.btnNext);
-            this.groupBox2.Controls.Add(this.btnPrevious);
-            this.groupBox2.Controls.Add(this.btnStop);
-            this.groupBox2.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox2.ForeColor = System.Drawing.Color.White;
-            this.groupBox2.Location = new System.Drawing.Point(3, 3);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(276, 80);
-            this.groupBox2.TabIndex = 9;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Control";
-            // 
-            // songName
-            // 
-            this.songName.AutoSize = true;
-            this.songName.Font = new System.Drawing.Font("MS UI Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.songName.ForeColor = System.Drawing.Color.White;
-            this.songName.Location = new System.Drawing.Point(308, 32);
-            this.songName.Name = "songName";
-            this.songName.Size = new System.Drawing.Size(0, 21);
-            this.songName.TabIndex = 10;
-            // 
             // progressBar1
             // 
-            this.progressBar1.Location = new System.Drawing.Point(36, 413);
+            this.progressBar1.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.progressBar1.ForeColor = System.Drawing.Color.SteelBlue;
+            this.progressBar1.Location = new System.Drawing.Point(11, 420);
             this.progressBar1.Maximum = 10;
             this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(522, 23);
+            this.progressBar1.Size = new System.Drawing.Size(590, 15);
+            this.progressBar1.Step = 1;
+            this.progressBar1.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
             this.progressBar1.TabIndex = 4;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(140, 441);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(35, 13);
-            this.label2.TabIndex = 5;
-            this.label2.Text = "label2";
-            this.label2.Click += new System.EventHandler(this.Label2_Click);
             // 
             // txtDuration
             // 
             this.txtDuration.AutoSize = true;
-            this.txtDuration.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtDuration.Font = new System.Drawing.Font("MS UI Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtDuration.ForeColor = System.Drawing.Color.White;
-            this.txtDuration.Location = new System.Drawing.Point(534, 448);
+            this.txtDuration.Location = new System.Drawing.Point(570, 448);
             this.txtDuration.Name = "txtDuration";
-            this.txtDuration.Size = new System.Drawing.Size(0, 16);
+            this.txtDuration.Size = new System.Drawing.Size(0, 19);
             this.txtDuration.TabIndex = 6;
+            // 
+            // txtActual
+            // 
+            this.txtActual.AutoSize = true;
+            this.txtActual.Font = new System.Drawing.Font("MS UI Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtActual.ForeColor = System.Drawing.Color.White;
+            this.txtActual.Location = new System.Drawing.Point(6, 448);
+            this.txtActual.Name = "txtActual";
+            this.txtActual.Size = new System.Drawing.Size(0, 19);
+            this.txtActual.TabIndex = 8;
+            // 
+            // time
+            // 
+            this.time.Interval = 1000;
+            this.time.Tick += new System.EventHandler(this.Time_Tick);
+            // 
+            // trackBar1
+            // 
+            this.trackBar1.Location = new System.Drawing.Point(3, 409);
+            this.trackBar1.Name = "trackBar1";
+            this.trackBar1.Size = new System.Drawing.Size(606, 45);
+            this.trackBar1.TabIndex = 9;
+            this.trackBar1.Scroll += new System.EventHandler(this.TrackBar1_Scroll);
             // 
             // Form1
             // 
@@ -429,8 +450,9 @@
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.ClientSize = new System.Drawing.Size(853, 567);
             this.Controls.Add(this.txtDuration);
-            this.Controls.Add(this.label2);
+            this.Controls.Add(this.txtActual);
             this.Controls.Add(this.progressBar1);
+            this.Controls.Add(this.trackBar1);
             this.Controls.Add(this.wmPlayer);
             this.Controls.Add(this.panelRight);
             this.Controls.Add(this.panelTop);
@@ -447,11 +469,12 @@
             this.panel1.ResumeLayout(false);
             this.panelBottom.ResumeLayout(false);
             this.panelBottom.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.btnPlay)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tbVolume)).EndInit();
-            this.groupBox2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -484,8 +507,10 @@
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Label songName;
         private System.Windows.Forms.ProgressBar progressBar1;
-        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label txtDuration;
+        private System.Windows.Forms.Label txtActual;
+        private System.Windows.Forms.Timer time;
+        private System.Windows.Forms.TrackBar trackBar1;
     }
 }
 
