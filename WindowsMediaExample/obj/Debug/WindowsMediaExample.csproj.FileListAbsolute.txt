@@ -1,0 +1,16 @@
+E:\Codigos\C#\Forms\WindowsMediaExample\WindowsMediaExample\bin\Debug\WindowsMediaExample.exe.config
+E:\Codigos\C#\Forms\WindowsMediaExample\WindowsMediaExample\bin\Debug\WindowsMediaExample.exe
+E:\Codigos\C#\Forms\WindowsMediaExample\WindowsMediaExample\bin\Debug\WindowsMediaExample.pdb
+E:\Codigos\C#\Forms\WindowsMediaExample\WindowsMediaExample\bin\Debug\Interop.WMPLib.dll
+E:\Codigos\C#\Forms\WindowsMediaExample\WindowsMediaExample\bin\Debug\AxInterop.WMPLib.dll
+E:\Codigos\C#\Forms\WindowsMediaExample\WindowsMediaExample\obj\Debug\WindowsMediaExample.csprojAssemblyReference.cache
+E:\Codigos\C#\Forms\WindowsMediaExample\WindowsMediaExample\obj\Debug\Interop.WMPLib.dll
+E:\Codigos\C#\Forms\WindowsMediaExample\WindowsMediaExample\obj\Debug\AxInterop.WMPLib.dll
+E:\Codigos\C#\Forms\WindowsMediaExample\WindowsMediaExample\obj\Debug\WindowsMediaExample.csproj.ResolveComReference.cache
+E:\Codigos\C#\Forms\WindowsMediaExample\WindowsMediaExample\obj\Debug\WindowsMediaExample.Form1.resources
+E:\Codigos\C#\Forms\WindowsMediaExample\WindowsMediaExample\obj\Debug\WindowsMediaExample.Properties.Resources.resources
+E:\Codigos\C#\Forms\WindowsMediaExample\WindowsMediaExample\obj\Debug\WindowsMediaExample.csproj.GenerateResource.cache
+E:\Codigos\C#\Forms\WindowsMediaExample\WindowsMediaExample\obj\Debug\WindowsMediaExample.csproj.CoreCompileInputs.cache
+E:\Codigos\C#\Forms\WindowsMediaExample\WindowsMediaExample\obj\Debug\WindowsMediaExample.exe
+E:\Codigos\C#\Forms\WindowsMediaExample\WindowsMediaExample\obj\Debug\WindowsMediaExample.pdb
+E:\Codigos\C#\Forms\WindowsMediaExample\WindowsMediaExample\obj\Debug\WindowsMediaExample.csproj.CopyComplete
