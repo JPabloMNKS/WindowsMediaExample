@@ -125,15 +125,41 @@ namespace WindowsMediaExample
         }
         private void BtnPrevious_Click(object sender, EventArgs e)
         {
-            file = routeFiles[--songList.SelectedIndex];
+            /*file = routeFiles[--songList.SelectedIndex];
             wmPlayer.URL = file;
-            wmPlayer.Ctlcontrols.play();
+            wmPlayer.Ctlcontrols.play();*/
+            
+            // My Editting To Make Your App More Better
+            
+            if(songList.SelectedIndex > 0)
+            {
+                file = routeFiles[songList.SelectedIndex - 1];
+                songList.SelectedIndex = songList.SelectedIndex - 1;
+                //file = routeFiles[--songList.SelectedIndex];
+                wmPlayer.URL = file;
+                wmPlayer.Ctlcontrols.play();
+            }
+            
+            
         }
         private void BtnNext_Click(object sender, EventArgs e)
         {
-            file = routeFiles[++songList.SelectedIndex];
+            /*file = routeFiles[++songList.SelectedIndex];
             wmPlayer.URL = file;
-            wmPlayer.Ctlcontrols.play();
+            wmPlayer.Ctlcontrols.play();*/
+            
+            //My Editing To Make Your App More Better
+            
+             if (songList.SelectedIndex.ToString() != quantitySongs.Value.ToString())
+            {
+                quantitySongs.Value = songList.Items.Count.ToString();
+                file = routeFiles[songList.SelectedIndex + 1];
+                songList.SelectedIndex = songList.SelectedIndex + 1;
+                //file = routeFiles[++songList.SelectedIndex];
+                wmPlayer.URL = file;
+                wmPlayer.Ctlcontrols.play();
+            }
+            
         }
         private void SongList_DoubleClick(object sender, EventArgs e)
         {
